@@ -1,177 +1,346 @@
-# 📘 STL in C++ – Ultimate DSA Notes & Cheat Sheet
+# 📘 Complete STL (Standard Template Library) Notes – C++ DSA Preparation
 
-## 🚀 What is STL?
+---
 
-**STL (Standard Template Library)** is a powerful set of C++ template classes to provide **common data structures** and **algorithms** like vectors, stacks, queues, sets, maps, and sorting/searching.
+## ✅ What is STL?
 
-> ✅ STL helps write **clean**, **optimized**, and **faster** code without reinventing the wheel.
+STL stands for **Standard Template Library** in C++.
+It provides **generic classes and functions** to make coding easier, faster, and more optimized. STL is heavily used in DSA, Competitive Programming, and interviews.
 
 ---
 
 ## ❓ Why Use STL?
 
-- 🔁 **Code Reusability** – No need to write data structures from scratch.
-- 🛡️ **Time-tested & Optimized** – Backed by years of development.
-- 🚀 **Speeds up coding** – Crucial in **DSA, CP, and interviews**.
-- ⏱️ **Built-in time complexities** help write efficient code fast.
+- Speeds up development with pre-written data structures and algorithms
+- Code becomes more readable and concise
+- STL components are **highly optimized** and tested
+- Helps you focus on solving logic rather than writing utility structures
 
 ---
 
-## 🧱 STL Core Components
+## 🔧 Components of STL
 
-| Component      | What it is                    | Examples                        |
-| -------------- | ----------------------------- | ------------------------------- |
-| **Containers** | Data structures to store data | `vector`, `set`, `map`, `stack` |
-| **Algorithms** | Ready-made functions          | `sort`, `reverse`, `count`      |
-| **Iterators**  | Smart pointers to containers  | `begin()`, `end()`, `auto`      |
-
----
-
-## 📦 STL Containers - Classified
-
-### 1️⃣ Sequence Containers – Linear structures
-
-> Maintain insertion order
-
-| Container | Description                | Use When                   |
-| --------- | -------------------------- | -------------------------- |
-| `vector`  | Dynamic array (contiguous) | Most commonly used         |
-| `list`    | Doubly linked list         | Frequent insert/delete mid |
-| `deque`   | Double-ended queue         | Insert/delete both ends    |
-| `array`   | Static array               | Fixed-size, C++11+         |
-
-### 2️⃣ Associative Containers – Fast lookup
-
-> Automatically **sorted**
-
-| Container  | Description            | Internals      |
-| ---------- | ---------------------- | -------------- |
-| `set`      | Unique sorted elements | Red-Black Tree |
-| `multiset` | Duplicates allowed     | Red-Black Tree |
-| `map`      | Key-value, unique keys | Red-Black Tree |
-| `multimap` | Key-value, duplicates  | Red-Black Tree |
-
-### 3️⃣ Unordered Containers – Hash-based (faster)
-
-> Elements are not sorted, but offer **O(1) average access**
-
-| Container            | Description        |
-| -------------------- | ------------------ |
-| `unordered_set`      | Unique keys        |
-| `unordered_map`      | Key-value pairs    |
-| `unordered_multiset` | Duplicates allowed |
-| `unordered_multimap` | Duplicates allowed |
-
-### 4️⃣ Container Adaptors – Built over other containers
-
-| Container        | Built On | Use Case        |
-| ---------------- | -------- | --------------- |
-| `stack`          | `deque`  | LIFO operations |
-| `queue`          | `deque`  | FIFO operations |
-| `priority_queue` | `vector` | Max/Min Heap    |
+1. **Containers** – Data structures to store data (e.g., `vector`, `map`, `set`, etc.)
+2. **Algorithms** – Built-in functions for searching, sorting, etc. (e.g., `sort`, `binary_search`)
+3. **Iterators** – Smart pointers to traverse containers.
+4. **Function Objects (Functors)** – For custom logic like comparators.
 
 ---
 
-## 🧮 STL Time Complexity Cheat Sheet
+## 📦 STL Containers
 
-| Operation           | `vector`   | `set` / `map` | `unordered_map` | `priority_queue` |
-| ------------------- | ---------- | ------------- | --------------- | ---------------- |
-| Insert              | O(1)\*     | O(log n)      | O(1) avg        | O(log n)         |
-| Access by Index     | O(1)       | -             | -               | -                |
-| Search              | O(n)       | O(log n)      | O(1) avg        | -                |
-| Erase (by iterator) | O(n)       | O(log n)      | O(1) avg        | O(log n)         |
-| Sorting             | O(n log n) | -             | -               | -                |
+### 🔹 `pair`
 
-\*Amortized for `vector` insert at end.
-
----
-
-## 🔁 Iterators in STL
+- Combines two values.
 
 ```cpp
-vector<int>::iterator it;
-auto it = v.begin(); // modern C++
+pair<int, int> p = {1, 2};
 ```
 
-| Function   | Purpose               |
-| ---------- | --------------------- |
-| `begin()`  | Points to 1st element |
-| `end()`    | Past-the-last element |
-| `rbegin()` | Reverse begin         |
-| `rend()`   | Reverse end           |
+Use Case: Useful to return or store two related values.
 
 ---
 
-## ⚙️ Common STL Algorithms (Header: `<algorithm>`)
+### 🔹 `vector`
 
-| Function                   | Description                      |
-| -------------------------- | -------------------------------- |
-| `sort(v.begin(), v.end())` | Sort in ascending                |
-| `reverse(...)`             | Reverse a container              |
-| `count(...)`               | Count occurrences                |
-| `find(...)`                | Linear search (returns iterator) |
-| `binary_search(...)`       | True/False if found              |
-| `lower_bound(...)`         | First not less than val          |
-| `upper_bound(...)`         | First greater than val           |
-| `max_element(...)`         | Iterator to max value            |
-| `min_element(...)`         | Iterator to min value            |
+- Dynamic array with contiguous memory.
+
+```cpp
+vector<int> v = {1, 2, 3};
+```
+
+**Operations:**
+
+- `push_back(x)` – O(1)
+- `pop_back()` – O(1)
+- `insert(pos, val)` – O(n)
+- `erase(pos)` – O(n)
+
+**Use Case:** Store dynamic lists when frequent access and end insertions are needed.
+**Properties:** Random access allowed; fast at end insert/delete.
 
 ---
 
-## 🧠 Interview-Focused Container Operations Summary
+### 🔹 `list`
 
-### `vector<int> v`
+- Doubly linked list.
 
 ```cpp
-v.push_back(10);    // O(1)
-v.pop_back();       // O(1)
-v.size();           // O(1)
-v.clear();          // O(n)
+list<int> l = {1, 2, 3};
 ```
 
-### `set<int> s`
+**Operations:**
+
+- `push_front`, `push_back` – O(1)
+- `erase(iterator)` – O(1)
+
+**Use Case:** Frequent insertions/deletions from middle/front.
+**Properties:** No random access.
+
+---
+
+### 🔹 `stack`
+
+- LIFO (Last In First Out)
 
 ```cpp
-s.insert(5);        // O(log n)
-s.count(5);         // O(log n)
-s.erase(5);         // O(log n)
+stack<int> s;
+s.push(10);
 ```
 
-### `unordered_map<int, string> m`
+**Operations:** `push`, `pop`, `top` – O(1)
+**Use Case:** Backtracking, undo operations, expression evaluation.
+
+---
+
+### 🔹 `queue`
+
+- FIFO (First In First Out)
 
 ```cpp
-m[1] = "One";       // O(1)
-m.find(1);          // O(1)
-m.erase(1);         // O(1)
+queue<int> q;
+q.push(1);
 ```
 
-### `priority_queue<int> pq`
+**Operations:** `push`, `pop`, `front` – O(1)
+**Use Case:** BFS, order of processing.
+
+---
+
+### 🔹 `deque`
+
+- Double-ended queue
 
 ```cpp
-pq.push(5);         // O(log n)
-pq.top();           // O(1)
-pq.pop();           // O(log n)
+deque<int> dq;
+dq.push_front(10);
+dq.push_back(20);
+```
+
+**Operations:** Insert/delete at both ends – O(1)
+**Use Case:** Sliding window problems.
+
+---
+
+### 🔹 `priority_queue`
+
+- Max heap by default
+
+```cpp
+priority_queue<int> pq;
+pq.push(10);
+```
+
+**Operations:**
+
+- `push` – O(log n)
+- `top()` – O(1)
+- `pop()` – O(log n)
+  **Use Case:** Top-k problems, Dijkstra’s algorithm.
+
+---
+
+### 🔹 `set`
+
+- Sorted and unique elements
+
+```cpp
+set<int> s;
+s.insert(10);
+```
+
+**Operations:** Insert, erase, find – O(log n)
+**Use Case:** Unique sorted collection
+**Properties:** Red-black tree internally.
+
+---
+
+### 🔹 `unordered_set`
+
+- Unique but not sorted
+
+```cpp
+unordered_set<int> us;
+```
+
+**Operations:** Insert, erase, find – O(1) average
+**Use Case:** Fast presence check
+**Properties:** Hash table internally.
+
+---
+
+### 🔹 `multiset`
+
+- Allows duplicate sorted elements
+
+```cpp
+multiset<int> ms;
+ms.insert(10);
+```
+
+**Use Case:** Counting frequency where duplicates matter.
+
+---
+
+### 🔹 `map`
+
+- Key-value pairs sorted by key
+
+```cpp
+map<int, string> m;
+m[1] = "one";
+```
+
+**Operations:** `insert`, `erase`, `find` – O(log n)
+**Use Case:** Dictionary with key ordering
+**Properties:** Red-black tree.
+
+---
+
+### 🔹 `unordered_map`
+
+- Key-value pairs, no sorting
+
+```cpp
+unordered_map<int, string> um;
+```
+
+**Operations:** Avg O(1) for insert, find
+**Use Case:** Fast key lookup
+**Properties:** Hash table.
+
+---
+
+### 🔹 `multimap`
+
+- Allows duplicate keys
+
+```cpp
+multimap<int, string> mm;
 ```
 
 ---
 
-## 💡 Bonus: STL Pro Tips for Interviews
+## ✂️ How `erase()` Works
 
-- ✅ Always use `auto` with iterators for simplicity
-- ✅ Use `emplace_back()` over `push_back()` for speed in objects
-- ✅ Prefer `unordered_map` over `map` unless you need sorting
-- ✅ Never iterate unordered containers with assumptions on order
-- ✅ Always write custom comparator with `priority_queue` when needed
+```cpp
+v.erase(it); // erase element at iterator
+s.erase(10); // erase value
+m.erase(key); // erase by key
+```
+
+Also supports:
+
+```cpp
+v.erase(startIt, endIt); // erase range
+```
 
 ---
 
-## 🧪 Practice This To Master STL
+## 🔁 Iterators
 
-| Task                   | STL Concepts            |
-| ---------------------- | ----------------------- |
-| Sort an array          | `sort()`                |
-| Find 2-sum             | `unordered_map`         |
-| K-largest elements     | `priority_queue`        |
-| Frequency map          | `map` / `unordered_map` |
-| Unique sorted elements | `set`                   |
-| Sliding window         | `deque`                 |
+```cpp
+vector<int>::iterator it = v.begin();
+auto it = v.begin();
+```
+
+### Common Functions:
+
+- `begin()` → First element
+- `end()` → Past-the-last
+- `rbegin()` → Reverse begin
+- `rend()` → Reverse end
+
+### Example:
+
+```cpp
+for(auto it = v.begin(); it != v.end(); ++it)
+    cout << *it << " ";
+```
+
+---
+
+## ⚙️ Algorithms
+
+### Common Algorithms from `<algorithm>`:
+
+```cpp
+sort(v.begin(), v.end());         // O(n log n)
+reverse(v.begin(), v.end());      // O(n)
+count(v.begin(), v.end(), x);     // O(n)
+find(v.begin(), v.end(), x);      // O(n)
+binary_search(v.begin(), v.end(), x); // O(log n)
+lower_bound(v.begin(), v.end(), x);   // O(log n)
+upper_bound(v.begin(), v.end(), x);   // O(log n)
+```
+
+---
+
+## 🔍 Comparators
+
+### Custom sort:
+
+```cpp
+bool comp(pair<int, int>& a, pair<int, int>& b) {
+    return a.second < b.second; // sort by second element
+}
+
+sort(v.begin(), v.end(), comp);
+```
+
+### Custom priority queue:
+
+```cpp
+priority_queue<int, vector<int>, greater<int>> minHeap;
+```
+
+---
+
+## 📊 Container Summary Table
+
+| Container      | Use Case            | Insert   | Access   | Erase    | Search   |
+| -------------- | ------------------- | -------- | -------- | -------- | -------- |
+| vector         | Dynamic array       | O(1)\*   | O(1)     | O(n)     | O(n)     |
+| list           | Frequent middle ops | O(1)     | O(n)     | O(1)     | O(n)     |
+| deque          | Both-end ops        | O(1)     | O(1)     | O(1)     | O(n)     |
+| stack          | LIFO                | O(1)     | O(1)     | O(1)     | -        |
+| queue          | FIFO                | O(1)     | O(1)     | O(1)     | -        |
+| priority_queue | Top-k, Max/Min Heap | O(log n) | O(1)     | O(log n) | -        |
+| set            | Unique sorted       | O(log n) | -        | O(log n) | O(log n) |
+| unordered_set  | Unique fast         | O(1)     | -        | O(1)     | O(1)     |
+| map            | Key-value, ordered  | O(log n) | O(log n) | O(log n) | O(log n) |
+| unordered_map  | Key-value, fast     | O(1)     | O(1)     | O(1)     | O(1)     |
+
+---
+
+## ⚡ Algorithms Summary Table
+
+| Algorithm         | Use Case              | Complexity |
+| ----------------- | --------------------- | ---------- |
+| `sort()`          | Sorting container     | O(n log n) |
+| `reverse()`       | Reverse container     | O(n)       |
+| `count()`         | Count occurrences     | O(n)       |
+| `find()`          | Find value            | O(n)       |
+| `binary_search()` | Search in sorted data | O(log n)   |
+| `lower_bound()`   | ≥ value (sorted only) | O(log n)   |
+| `upper_bound()`   | > value (sorted only) | O(log n)   |
+
+---
+
+## 🧠 Final Thoughts
+
+- STL is a **must-know** for any serious C++ programmer.
+- It drastically cuts down implementation time.
+- Master containers, algorithms, iterators, and custom comparators.
+- Use `auto` to write cleaner iterator-based code.
+- Practice frequently used patterns: sliding window, hash map, heaps, etc.
+
+---
+
+✅ **Must-Practice Problems:**
+
+- Two Sum (unordered_map)
+- Kth Largest Element (priority_queue)
+- Remove Duplicates (set)
+- Frequency Counter (map)
+- Next Greater Element (stack)

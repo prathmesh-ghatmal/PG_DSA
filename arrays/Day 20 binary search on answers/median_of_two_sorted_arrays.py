@@ -28,12 +28,13 @@ def median_of_two_sorted_arrays(arr1,arr2):
         median=(temp[avg]+temp[avg-1])//2
     else:
         avg=(n1+n2)//2
+        print(avg)
         return temp[avg]
 
 
     return median
 
 a = [1, 4, 7, 10, 12]
-b = [2, 3, 6, 15]
+b = [2, 3, 6, 15,18]
 
 print(median_of_two_sorted_arrays(a,b))
